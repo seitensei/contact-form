@@ -1,7 +1,13 @@
 import Express from 'express';
+import path from 'path';
+import { IActionResult } from './interfaces/actionResult';
 import { isContactForm } from './interfaces/contactForm';
+import { AppendToFile } from './utils/fileUtil';
 
 const PORT = 8080;
+const appRoot = path.resolve(__dirname, '..');
+const fileName = 'contactFormResponses.txt';
+const filePath = path.join(appRoot, fileName);
 
 class App {
     public app: Express.Application;
@@ -20,14 +26,26 @@ class App {
     private routes() {
         // For the limited scope of this app, routes are being managed here
         this.app.post('/contactform', (req, res) => {
-            console.log(req.body);
+            let result: IActionResult = {
+                successful: false,
+            };
+
             const reqObj = req.body;
             if (isContactForm(reqObj)) {
-            } else {
-                res.statusCode = 500;
-                res.json({
-                    message: 'An error was encounter processing the message.',
+                const formatted = `${reqObj.firstName ? reqObj.firstName + ' ' : ''}${reqObj.lastName ? reqObj.lastName + ' ' : ''}<${reqObj.email}>: ${reqObj.message}`;
+                AppendToFile(filePath, formatted).then(() => {
+                    res.statusCode = 200;
+                    result.message = 'The message was successfully recorded.';
+                }).catch((err) => {
+                    res.statusCode = 500;
+                    result.message = 'An error was encountered recording the message. Please wait a while and try again.';
+                }).finally(() => {
+                    res.send(result);
                 });
+            } else {
+                res.statusCode = 400;
+                result.message = 'An error was encountered processing the message.';
+                res.send(result);
             }
         });
     }
