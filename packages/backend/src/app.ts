@@ -32,12 +32,7 @@ class App {
 
             const reqObj = req.body;
             if (isContactForm(reqObj)) {
-                const formatted = `${
-                    reqObj.firstName ? reqObj.firstName + ' ' : ''
-                }${reqObj.lastName ? reqObj.lastName + ' ' : ''}<${
-                    reqObj.email
-                }>: ${reqObj.message}`;
-                AppendToFile(filePath, formatted)
+                AppendToFile(filePath, reqObj)
                     .then(() => {
                         res.statusCode = 200;
                         result.successful = true;
