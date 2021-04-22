@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import Input from '../Input/Input';
+import TextArea from '../TextArea/TextArea';
 import styles from './ContactForm.module.scss';
 
 const ContactForm = () => {
@@ -17,23 +18,39 @@ const ContactForm = () => {
                 <Input
                     label="First Name"
                     value={firstName}
-                    onChange={setFirstName}
+                    name="firstName"
+                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                        setFirstName(e.target.value)
+                    }
                 />
                 <Input
                     label="Last Name"
                     value={lastName}
-                    onChange={setLastName}
+                    name="lastName"
+                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                        setLastName(e.target.value)
+                    }
                 />
-                <Input label="Email" value={email} onChange={setEmail} />
                 <Input
+                    label="Email"
+                    value={email}
+                    type="email"
+                    name="email"
+                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                        setEmail(e.target.value)
+                    }
+                />
+                <TextArea
                     label="Message"
                     value={message}
-                    onChange={setMessage}
-                    textArea
+                    name="message"
+                    onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
+                        setMessage(e.target.value)
+                    }
                 />
                 <button
+                    type="submit"
                     className={styles.submitButton}
-                    onClick={() => onSubmit}
                 >
                     Submit
                 </button>
