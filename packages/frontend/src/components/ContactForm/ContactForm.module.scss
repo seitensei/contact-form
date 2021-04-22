@@ -1,0 +1,19 @@
+.header {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.submitButton {
+    background-color: #0087aa;
+    color: #ffffff;
+    font-size: 16px;
+    border: 0px;
+    text-transform: uppercase;
+    width: 100%;
+    padding: 12px 8px;
+    margin: 32px 0px;
+
+    &:hover {
+        background-color: #1997b7;
+    }
+}

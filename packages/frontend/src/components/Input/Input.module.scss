@@ -1,0 +1,32 @@
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+    margin: 8px 0px;
+}
+
+.inputLabel {
+    font-size: 16px;
+    font-weight: bold;
+    padding-bottom: 8px;
+    padding-top: 8px;
+}
+
+.inputControl {
+    height: 36px;
+    font-size: 16px;
+    background-color: #ffffff;
+    border: 1px;
+    border-radius: 4px;
+    border-style: solid;
+    border-color: #0087aa;
+
+    &:focus-visible {
+        outline: none;
+    }
+}
+
+.inputControlTextArea {
+    height: 144px;
+    resize: none;
+    font-family: Arial, sans-serif;
+}

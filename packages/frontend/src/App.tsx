@@ -7,7 +7,6 @@ import ContactForm from './components/ContactForm/ContactForm';
 export const App = () => {
     return (
         <main className={styles.mainContainer}>
-            <h1>Contact Us Form</h1>
             <ContactForm />
         </main>
     );
