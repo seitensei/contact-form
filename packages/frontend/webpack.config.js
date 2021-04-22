@@ -6,6 +6,9 @@ module.exports = (env) => {
 
     return {
         entry: path.resolve(__dirname, './src/App.tsx'),
+        resolve: {
+            extensions: ['*', '.ts', '.tsx', '.js', '.jsx']
+        },
         module: {
             rules: [
                 {
