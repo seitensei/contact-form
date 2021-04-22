@@ -1,3 +1,5 @@
+@use '../../styles/shared.scss';
+
 .inputContainer {
     display: flex;
     flex-direction: column;
@@ -14,13 +16,13 @@
 .inputControl {
     height: 144px;
     font-size: 16px;
-    background-color: #ffffff;
+    background-color: shared.$white;
     border: 1px;
     border-radius: 4px;
     border-style: solid;
-    border-color: #0087aa;
+    border-color: shared.$blue;
     resize: none;
-    font-family: Arial, sans-serif;
+    font-family: shared.$font;
 
     &:focus-visible {
         outline: none;

@@ -26,6 +26,7 @@ module.exports = (env) => {
                             loader: 'css-loader',
                             options: {
                                 sourceMap: isDevelopment,
+                                importLoaders: 1,
                                 modules: true,
                             }
                         },
@@ -38,6 +39,29 @@ module.exports = (env) => {
                             },
                         },
                     ],
+                    include: /\.module\.(scss|sass|css)$/,
+                },
+                {
+                    test: /\.(scss|sass|css)$/,
+                    use: [
+                        'style-loader',
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                importLoaders: 1,
+                                sourceMap: isDevelopment
+                            }
+                        },
+                        {
+                            loader: 'sass-loader',
+                            options: {
+                                // use dart-sass
+                                implementation: require('sass'),
+                                sourceMap: isDevelopment
+                            }
+                        }
+                    ],
+                    exclude: /\.module\.(scss|sass|css)$/,
                 },
             ],
         },

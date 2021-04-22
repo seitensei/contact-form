@@ -1,10 +1,12 @@
+@use './styles/shared.scss';
+
 html,
 body {
     margin: 0;
     padding: 0;
     height: 100%;
     width: 100%;
-    background-color: #f6f5f5;
-    font-family: Arial, sans-serif;
-    color: #4A4A4A;
+    background-color: shared.$background-color;
+    font-family: shared.$font;
+    color: shared.$text-color;
 }
