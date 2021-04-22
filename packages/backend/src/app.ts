@@ -32,19 +32,29 @@ class App {
 
             const reqObj = req.body;
             if (isContactForm(reqObj)) {
-                const formatted = `${reqObj.firstName ? reqObj.firstName + ' ' : ''}${reqObj.lastName ? reqObj.lastName + ' ' : ''}<${reqObj.email}>: ${reqObj.message}`;
-                AppendToFile(filePath, formatted).then(() => {
-                    res.statusCode = 200;
-                    result.message = 'The message was successfully recorded.';
-                }).catch((err) => {
-                    res.statusCode = 500;
-                    result.message = 'An error was encountered recording the message. Please wait a while and try again.';
-                }).finally(() => {
-                    res.send(result);
-                });
+                const formatted = `${
+                    reqObj.firstName ? reqObj.firstName + ' ' : ''
+                }${reqObj.lastName ? reqObj.lastName + ' ' : ''}<${
+                    reqObj.email
+                }>: ${reqObj.message}`;
+                AppendToFile(filePath, formatted)
+                    .then(() => {
+                        res.statusCode = 200;
+                        result.message =
+                            'The message was successfully recorded.';
+                    })
+                    .catch((err) => {
+                        res.statusCode = 500;
+                        result.message =
+                            'An error was encountered recording the message. Please wait a while and try again.';
+                    })
+                    .finally(() => {
+                        res.send(result);
+                    });
             } else {
                 res.statusCode = 400;
-                result.message = 'An error was encountered processing the message.';
+                result.message =
+                    'An error was encountered processing the message.';
                 res.send(result);
             }
         });
