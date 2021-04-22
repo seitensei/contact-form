@@ -40,6 +40,7 @@ class App {
                 AppendToFile(filePath, formatted)
                     .then(() => {
                         res.statusCode = 200;
+                        result.successful = true;
                         result.message =
                             'The message was successfully recorded.';
                     })
