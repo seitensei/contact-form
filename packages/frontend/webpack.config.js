@@ -69,15 +69,18 @@ module.exports = (env) => {
         output: {
             path: path.resolve(__dirname, './dist'),
             filename: '[name].bundle.js',
+            publicPath: '/'
         },
         devServer: {
-            contentBase: path.resolve(__dirname, './dist'),
+            contentBase: path.resolve(__dirname, './public'),
             open: true,
+            port: 8080,
+            historyApiFallback: true,
         },
         plugins: [
             new HtmlWebpackPlugin({
                 template: path.resolve(__dirname + '/src/index.html'),
-                filename: 'index.html'
+                filename: 'index.html',
             }),
         ]
     };
