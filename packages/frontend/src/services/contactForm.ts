@@ -1,4 +1,4 @@
-const postUrl = 'http://localhost:8080/contactform';
+const postUrl = 'http://localhost:35687/contactform';
 
 export interface IActionResult {
     successful: boolean;

@@ -4,7 +4,7 @@ import { IActionResult } from './interfaces/actionResult';
 import { isContactForm } from './interfaces/contactForm';
 import { AppendToFile } from './utils/fileUtil';
 
-const PORT = 8080;
+const PORT = 35687;
 const appRoot = path.resolve(__dirname, '..');
 const fileName = 'contactFormResponses.txt';
 const filePath = path.join(appRoot, fileName);
@@ -24,8 +24,13 @@ class App {
     }
 
     private routes() {
+        this.app.use((req, res, next) => {
+            res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
+            res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+            next();
+        });
         // For the limited scope of this app, routes are being managed here
-        this.app.post('/contactform', (req, res) => {
+        this.app.post('/contactform', (req, res, next) => {
             let result: IActionResult = {
                 successful: false,
             };
