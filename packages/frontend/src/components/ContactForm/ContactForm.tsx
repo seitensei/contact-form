@@ -1,4 +1,5 @@
 import React, { ChangeEvent, useState } from 'react';
+import { useHistory } from 'react-router';
 import { IActionResult, postContactForm } from '../../services/contactForm';
 import Input from '../Input/Input';
 import Notification from '../Notification/Notification';
@@ -6,6 +7,8 @@ import TextArea from '../TextArea/TextArea';
 import styles from './ContactForm.module.scss';
 
 const ContactForm = () => {
+    const history = useHistory();
+
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
@@ -29,6 +32,7 @@ const ContactForm = () => {
                 setLastName('');
                 setEmail('');
                 setMessage('');
+                history.push('/completed');
             } else {
                 setNotification(res.message ?? 'A problem has occurred while sending the message.');
                 setIsNotificationOpen(true);
@@ -45,7 +49,6 @@ const ContactForm = () => {
 
     return (
         <>
-            <h1>Contact Us Form</h1>
             <Notification value={notification} isOpen={isNotificationOpen} setIsOpen={handleClearNotification} />
             <form onSubmit={(e: React.SyntheticEvent) => onSubmit(e)}>
                 <Input
