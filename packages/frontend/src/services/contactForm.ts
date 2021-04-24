@@ -1,4 +1,6 @@
-const postUrl = 'http://localhost:35687/contactform';
+const apiHost = process.env.API_HOST ?? 'localhost';
+const apiPort = process.env.API_PORT ?? '35687';
+const postUrl = `http://${apiHost}:${apiPort}/contactform`;
 
 export interface IActionResult {
     successful: boolean;

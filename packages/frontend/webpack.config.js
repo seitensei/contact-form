@@ -1,7 +1,8 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const dotenvVar = require('dotenv').config({path: __dirname + '/.env'});
+const Dotenv = require('dotenv-webpack');
 
 module.exports = (env) => {
     const isDevelopment = env.development;
@@ -23,7 +24,7 @@ module.exports = (env) => {
                     use: [
                         isDevelopment
                             ? 'style-loader'
-                            : MiniCssExtractPlugin.loader,
+                            : MiniCSSExtractPlugin.loader,
                         {
                             loader: 'css-loader',
                             options: {
@@ -48,7 +49,7 @@ module.exports = (env) => {
                     use: [
                         isDevelopment
                             ? 'style-loader'
-                            : MiniCssExtractPlugin.loader,
+                            : MiniCSSExtractPlugin.loader,
                         {
                             loader: 'css-loader',
                             options: {
@@ -81,11 +82,12 @@ module.exports = (env) => {
         devServer: {
             contentBase: path.resolve(__dirname, './public'),
             open: true,
-            port: 8080,
+            port: dotenvVar.parsed.CLIENT_PORT ?? 8080,
             historyApiFallback: true,
         },
         plugins: [
             new MiniCSSExtractPlugin(),
+            new Dotenv(),
             new HtmlWebpackPlugin({
                 template: path.resolve(__dirname + '/src/index.html'),
                 filename: 'index.html',

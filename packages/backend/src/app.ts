@@ -4,7 +4,10 @@ import { IActionResult } from './interfaces/actionResult';
 import { isContactForm } from './interfaces/contactForm';
 import { AppendToFile } from './utils/fileUtil';
 
-const PORT = 35687;
+const PORT = process.env.API_PORT ?? 35687;
+const clientHost = process.env.CLIENT_HOST ?? 'localhost';
+const clientPort = process.env.CLIENT_PORT ?? '8080';
+
 const appRoot = path.resolve(__dirname, '..');
 const fileName = 'contactFormResponses.txt';
 const filePath = path.join(appRoot, fileName);
@@ -25,7 +28,7 @@ class App {
 
     private routes() {
         this.app.use((req, res, next) => {
-            res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
+            res.header('Access-Control-Allow-Origin', `http://${clientHost}:${clientPort}`);
             res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
             next();
         });
