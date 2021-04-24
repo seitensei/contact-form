@@ -7,7 +7,7 @@
 }
 
 .inputLabel {
-    font-size: 16px;
+    font-size: shared.$font-size;
     font-weight: bold;
     padding-bottom: 8px;
     padding-top: 8px;
@@ -15,7 +15,7 @@
 
 .inputControl {
     height: 36px;
-    font-size: 16px;
+    font-size: shared.$font-size;
     background-color: shared.$white;
     border: 1px;
     border-radius: 4px;

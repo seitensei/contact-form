@@ -1,10 +1,10 @@
 import React, { ChangeEvent, useState } from 'react';
 import { useHistory } from 'react-router';
 import { IActionResult, postContactForm } from '../../services/contactForm';
+import Button from '../Button/Button';
 import Input from '../Input/Input';
 import Notification from '../Notification/Notification';
 import TextArea from '../TextArea/TextArea';
-import styles from './ContactForm.module.scss';
 
 const ContactForm = () => {
     const history = useHistory();
@@ -90,13 +90,12 @@ const ContactForm = () => {
                     }
                     required
                 />
-                <button
+                <Button
                     type="submit"
                     disabled={loading}
-                    className={styles.submitButton}
                 >
                     Submit
-                </button>
+                </Button>
             </form>
         </>
     );

@@ -1,15 +1,10 @@
 @use '../../styles/shared.scss';
 
-.header {
-    font-size: 32px;
-    font-weight: bold;
-}
-
-.submitButton {
+.buttonStyle {
     background-color: shared.$blue;
     color: shared.$white;
     font-family: shared.$font;
-    font-size: 16px;
+    font-size: shared.$font-size;
     border: 0px;
     text-transform: uppercase;
     width: 100%;
