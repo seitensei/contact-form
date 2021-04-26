@@ -9,6 +9,7 @@ import {
     Route,
     Switch,
 } from 'react-router-dom';
+import { routes } from './routes';
 import CompletedView from './components/CompletedView/CompletedView';
 
 export const App = () => {
@@ -17,8 +18,9 @@ export const App = () => {
             <main className={styles.mainContainer}>
                 <h1 className={styles.header}>Contact Us Form</h1>
                 <Switch>
-                    <Route exact path="/" component={ContactForm} />
-                    <Route path="/completed" component={CompletedView} />
+                    {routes.map(route => (
+                        <Route key={route.key} exact={route.exact} path={route.path} component={route.component} />
+                    ))}
                     <Route component={() => <Redirect to="/" />} />
                 </Switch>
             </main>
