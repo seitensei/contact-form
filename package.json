@@ -1,6 +1,13 @@
 {
   "name": "root",
   "private": true,
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "prestart": "lerna bootstrap",
+    "predevelop": "lerna bootstrap",
+    "start": "lerna run start",
+    "develop": "lerna run develop"
+  },
   "devDependencies": {
     "lerna": "^4.0.0"
   }

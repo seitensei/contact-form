@@ -6,6 +6,6 @@ Interview Sample Project
 - [Yarn](https://yarnpkg.com/) - `npm i -g yarn`
 
 ## Running
-- Run `yarn` in the root directory to install lerna
-- Run `yarn lerna bootstrap` to bootstrap/install package dependencies for the frontend and backend
-- Run `yarn lerna run start` to start both the frontend and backend
+- Run `yarn` in the root directory to install monorepo dependencies
+- Run `yarn start` to start both the frontend webpack dev server and backend api
+- Run `yarn develop` to start with the frontend webpack dev server in development configuration
