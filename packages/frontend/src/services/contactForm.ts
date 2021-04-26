@@ -23,7 +23,6 @@ export const postContactForm = (contactForm: IContactForm) => {
         },
         body: JSON.stringify(contactForm)
     }).then((data) => {
-        debugger;
         return data.json();
     });
 };
