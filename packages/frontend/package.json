@@ -9,7 +9,8 @@
     "start": "cross-env NODE_ENV=production webpack serve --env production",
     "develop": "cross-env NODE_ENV=development webpack serve --env development",
     "check": "tsc",
-    "format": "prettier --write src/"
+    "format": "prettier --write src/",
+    "test": "jest"
   },
   "devDependencies": {
     "@babel/core": "^7.13.16",
