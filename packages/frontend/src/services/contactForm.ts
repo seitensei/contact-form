@@ -1,28 +1,19 @@
-const apiHost = process.env.API_HOST ?? 'localhost';
-const apiPort = process.env.API_PORT ?? '35687';
-const postUrl = `http://${apiHost}:${apiPort}/contactform`;
+import { IActionResult, IAPIClient, IContactForm } from "./apiClient";
 
-export interface IActionResult {
-    successful: boolean;
-    message?: string;
+export class ContactFormService {
+    private _apiClient: IAPIClient;
+
+    constructor(apiClient: IAPIClient) {
+        this._apiClient = apiClient;
+    }
+
+    public postContactForm(contactForm: IContactForm) {
+        return this._apiClient.postEndpoint(contactForm).catch((err) => {
+            console.error(err);
+            return {
+                successful: false,
+                message: 'The message was unable to be processed.'
+            } as IActionResult;
+        });
+    }
 }
-
-
-export interface IContactForm {
-    firstName?: string;
-    lastName?: string;
-    email: string;
-    message: string;
-}
-
-export const postContactForm = (contactForm: IContactForm) => {
-    return fetch(postUrl, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(contactForm)
-    }).then((data) => {
-        return data.json();
-    });
-};

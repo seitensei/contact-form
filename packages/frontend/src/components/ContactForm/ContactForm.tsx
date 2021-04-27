@@ -1,10 +1,13 @@
 import React, { ChangeEvent, useState } from 'react';
 import { useHistory } from 'react-router';
-import { IActionResult, postContactForm } from '../../services/contactForm';
+import { APIClient } from '../../services/apiClient';
+import { ContactFormService } from '../../services/contactForm';
 import Button from '../Button/Button';
 import Input from '../Input/Input';
 import Notification from '../Notification/Notification';
 import TextArea from '../TextArea/TextArea';
+
+const contactFormService = new ContactFormService(new APIClient());
 
 const ContactForm = () => {
     const history = useHistory();
@@ -21,12 +24,12 @@ const ContactForm = () => {
         e.preventDefault();
         setLoading(true);
 
-        postContactForm({
+        contactFormService.postContactForm({
             firstName: firstName,
             lastName: lastName,
             email: email,
             message: message
-        }).then((res: IActionResult) => {
+        }).then((res) => {
             if (res.successful) {
                 setFirstName('');
                 setLastName('');
